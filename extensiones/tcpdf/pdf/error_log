@@ -1,0 +1,2 @@
+[06-May-2024 21:53:34 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home/sucahe98/public_html/pos/extensiones/tcpdf/pdf/baja_suministro.php on line 187
+[06-May-2024 21:53:34 UTC] PHP Warning:  Undefined array key "factura" in /home/sucahe98/public_html/pos/extensiones/tcpdf/pdf/baja_suministro.php on line 202
