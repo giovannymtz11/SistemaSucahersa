@@ -7,26 +7,15 @@ use App\Models\Baja;
 
 class BajasController extends Controller
 {
-    public static function ctrMostrarBajas($item = null, $valor = null)
-    {
-        if ($item && $valor) {
-            $respuesta = Baja::where($item, $valor)->get();
-        } else {
-            $respuesta = Baja::all();
-        }
-
-        return $respuesta;
-    }
-
     public static function ctrRangoFechasBajas($fechaInicial = null, $fechaFinal = null)
     {
+        $query = Baja::query();
+
         if ($fechaInicial && $fechaFinal) {
-            $respuesta = Baja::whereBetween('fecha', [$fechaInicial, $fechaFinal])->get();
-        } else {
-            $respuesta = Baja::all();
+            $query->whereBetween('fecha', [$fechaInicial, $fechaFinal]);
         }
 
-        return $respuesta;
+        return $query->get();
     }
 
     public function mostrarGraficoBajas(Request $request)

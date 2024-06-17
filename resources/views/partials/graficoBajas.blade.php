@@ -1,16 +1,4 @@
-@extends('layouts.app')
-
-@section('title', 'Gráfico de Bajas')
-
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div id="bajasChart"></div>
-        </div>
-    </div>
-</div>
-
+<div id="bajasChart"></div>
 <!-- ApexCharts JS -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
@@ -32,6 +20,14 @@
                 categories: categories,
                 title: {
                     text: 'Fecha'
+                },
+                labels: {
+                    formatter: function(value) {
+                        return new Date(value).toLocaleDateString('es-ES', {
+                            month: 'short',
+                            year: 'numeric'
+                        });
+                    }
                 }
             },
             yaxis: {
@@ -49,4 +45,3 @@
         chart.render();
     });
 </script>
-@endsection

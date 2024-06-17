@@ -9,13 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('usuarios', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('usuario')->unique();
+            $table->string('password');
+            $table->string('perfil')->nullable();
+            $table->string('foto')->nullable();
+            $table->boolean('estado')->default(1);
+            $table->timestamp('ultimo_login')->nullable();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

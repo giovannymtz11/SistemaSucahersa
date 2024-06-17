@@ -4,52 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesion</title>
+    <title>Iniciar sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-
-    @if(session('success'))
-    <script>
-        alert("{{ session('success') }}");
-    </script>
-    @endif
-
-    @if(session('error'))
-    <script>
-        alert("{{ session('error') }}");
-    </script>
-    @endif
-
     <div class="container">
-        <h2>Inicia sesion</h2>
+        <h2>Inicia sesión</h2>
         <form action="{{ url('/login') }}" method="POST">
             @csrf
-            <label for="usuario" class="form-label">Usuario:</label>
-            <input type="text" class="form-control" id="usuario" placeholder="nombre@example.com" name="usuario" required>
-
-            <label for="contrasena" class="form-label">Contraseña:</label>
-            <input type="password" id="contrasena" class="form-control" aria-describedby="passwordHelpBlock" 
-            placeholder="Recuerda que son mas de 8 caracteres." name="contrasena" required>
-
-            <div class="checkbox-container">
-                <input type="checkbox" id="showPassword" onclick="togglePassword()">
-                <label for="showPassword">Mostrar contraseña</label>
+            <div class="mb-3">
+                <label for="usuario" class="form-label">Usuario:</label>
+                <input type="text" class="form-control" id="usuario" name="usuario" required>
             </div>
-
-            <div class="links-container">
-                <a href="{{ route('signin') }}">Registrarme</a>
-                <a href="{{ route('forgotPassword') }}">Olvidé mi contraseña</a>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña:</label>
+                <input type="password" id="password" class="form-control" name="password" required>
             </div>
-
-            <input type="submit" value="Ingresar">
-
-            <br> &copy;2024 Sucahersa. Todos los derechos reservados.
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePassword()">
+                <label class="form-check-label" for="showPassword">Mostrar contraseña</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Ingresar</button>
         </form>
     </div>
 
-    <style>
-        body {
+    <script>
+        function togglePassword() {
+            var passwordInput = document.getElementById("password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+<style>
+body {
             background-color: #f0f0f0;
             font-family: Arial, sans-serif;
             display: flex;
@@ -149,18 +144,3 @@
             background-color: #45a049;
         }
     </style>
-
-    <script>
-        function togglePassword() {
-            var passwordInput = document.getElementById("contrasena");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-            } else {
-                passwordInput.type = "password";
-            }
-        }
-    </script>
-
-</body>
-
-</html>
